@@ -1,0 +1,31 @@
+.weekcalendar-container {
+  /* background-color: red; */
+  min-width: 100%;
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-color: #0002;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  margin-top: 20px;
+}
+
+.day-container {
+  /* background-color: green; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 100px;
+}
+
+.day-container:hover {
+  cursor: pointer;
+}
+
+.weekday-name {
+  color: #000;
+}

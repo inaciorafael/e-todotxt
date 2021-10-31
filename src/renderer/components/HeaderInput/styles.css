@@ -1,0 +1,26 @@
+.input-container {
+  margin-left: 20px;
+  background-color: #738392;
+  border-radius: 3px;
+  max-height: 25px;
+}
+
+.input {
+  background-color: #738392;
+  border: none;
+  color: #FFF;
+  border: 0;
+  outline: 0;
+  margin-left: 5px;
+  max-height: 25px;
+  border-radius: 3px;
+}
+
+.input:focus {
+  outline: none !important;
+}
+
+.input::placeholder {
+  color: #FFF9;
+  opacity: 1;
+}

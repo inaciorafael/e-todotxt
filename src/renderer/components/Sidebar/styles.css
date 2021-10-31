@@ -1,0 +1,45 @@
+.sidebar-container {
+  background-color: #FAFAFA;
+  height: 100vh;
+  width: 200px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.active {
+  background-color: #FAFAFA;
+}
+
+.item-title {
+  color: #000;
+}
+
+.calendar-icon-container {
+  position: relative;
+  bottom: 2px;
+}
+
+.calendar-date {
+  position: absolute;
+  right: 3px;
+  top: 7px;
+  font-size: 12px;
+  font-weight: bold;
+  color: green
+}
+
+.item-container {
+  width: 100%;
+  padding: 5px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -webkit-transition: background-color 0.1s ease-out;
+  -moz-transition: background-color 0.1s ease-out;
+  -o-transition: background-color 0.1s ease-out;
+  transition: background-color 0.1s ease-out;
+}
+
+.item-container:hover {
+  background-color: #FFF;
+  cursor: pointer;
+}

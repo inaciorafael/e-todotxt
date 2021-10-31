@@ -1,0 +1,14 @@
+.buttons-container {
+  margin-right: 20px;
+  /* background-color: red; */
+  width: 150px;
+}
+
+.icon-btn:hover {
+  cursor: pointer;
+}
+
+.count {
+  color: #FFF;
+  font-size: 14px;
+}
