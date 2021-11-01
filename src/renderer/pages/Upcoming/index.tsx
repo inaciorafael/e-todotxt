@@ -63,7 +63,10 @@ const Upcoming: React.FC = () => {
       className="page-container"
     >
       <h2>{dayjs(selectedDate).format('MMMM YYYY')}</h2>
-      <WeekCalendar onChangeDate={setSelectedDate} />
+      <WeekCalendar
+        selectedDate={selectedDate}
+        onChangeDate={setSelectedDate}
+      />
       <div style={{ height: 30 }} />
       <h5>Overdue</h5>
       {oldTasks.map((task) => (

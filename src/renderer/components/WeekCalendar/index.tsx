@@ -5,9 +5,13 @@ import './styles.css';
 
 interface WeekCalendarProps {
   onChangeDate: (clickedDate: Date) => void;
+  selectedDate: Date;
 }
 
-const WeekCalendar: React.FC<WeekCalendarProps> = ({ onChangeDate }) => {
+const WeekCalendar: React.FC<WeekCalendarProps> = ({
+  onChangeDate,
+  selectedDate,
+}) => {
   const [weekdays, setWeekDays] = useState<Date[]>([]);
 
   const getWeekDays = () => {
@@ -30,10 +34,25 @@ const WeekCalendar: React.FC<WeekCalendarProps> = ({ onChangeDate }) => {
             type="button"
             onClick={() => onChangeDate(dateObj)}
             key={String(dateObj)}
-            className="day-container"
+            className={`day-container ${
+              dayjs(dateObj).isSame(dayjs(selectedDate), 'date')
+                ? 'day-active'
+                : ''
+            }`}
           >
             <span className="weekday-name">{dayjs(dateObj).format('ddd')}</span>
-            <span className="weekday-name">{dayjs(dateObj).format('DD')}</span>
+            <span
+              className={`weekday-name ${
+                dayjs(dateObj).isSame(dayjs(selectedDate), 'date')
+                  ? 'day-number-active'
+                  : ''
+              }`}
+            >
+              {dayjs(dateObj).format('DD')}
+            </span>
+            {dayjs(dateObj).isSame(dayjs(selectedDate), 'date') && (
+              <div className="have-task-dot" />
+            )}
           </button>
         ))}
     </div>

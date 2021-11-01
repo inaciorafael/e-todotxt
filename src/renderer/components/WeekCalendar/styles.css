@@ -1,3 +1,20 @@
+@-webkit-keyframes fadeIn {
+0% { opacity: 0.3; }
+100% { opacity: 1; }
+}
+@-moz-keyframes fadeIn {
+0% { opacity: 0.3;}
+100% { opacity: 1; }
+}
+@-o-keyframes fadeIn {
+0% { opacity: 0.3; }
+100% { opacity: 1; }
+}
+@keyframes fadeIn {
+0% { opacity: 0.3; }
+100% { opacity: 1; }
+}
+
 .weekcalendar-container {
   /* background-color: red; */
   min-width: 100%;
@@ -9,7 +26,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 5px;
   margin-top: 20px;
 }
 
@@ -26,6 +42,29 @@
   cursor: pointer;
 }
 
+.day-active {
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-color: #516477;
+  transition: position 500ms ease;
+  -webkit-animation: fadeIn 0.8s ease-in-out;
+  -moz-animation: fadeIn 0.8s ease-in-out;
+  -o-animation: fadeIn 0.8s ease-in-out;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.day-number-active {
+  color: #516477;
+  font-weight: bold;
+}
+
+.have-task-dot {
+  height: 4px;
+  width: 4px;
+  border-radius: 2px;
+  background-color: #516477;
+}
+
 .weekday-name {
-  color: #000;
+  color: rgba(0,0,0,0.8);
 }
