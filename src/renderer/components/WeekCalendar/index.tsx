@@ -3,7 +3,11 @@ import dayjs from 'dayjs';
 
 import './styles.css';
 
-const WeekCalendar: React.FC = () => {
+interface WeekCalendarProps {
+  onChangeDate: (clickedDate: Date) => void;
+}
+
+const WeekCalendar: React.FC<WeekCalendarProps> = ({ onChangeDate }) => {
   const [weekdays, setWeekDays] = useState<Date[]>([]);
 
   const getWeekDays = () => {
@@ -22,10 +26,15 @@ const WeekCalendar: React.FC = () => {
     <div className="weekcalendar-container">
       {weekdays.length > 0 &&
         weekdays.map((dateObj) => (
-          <div className="day-container">
+          <button
+            type="button"
+            onClick={() => onChangeDate(dateObj)}
+            key={String(dateObj)}
+            className="day-container"
+          >
             <span className="weekday-name">{dayjs(dateObj).format('ddd')}</span>
             <span className="weekday-name">{dayjs(dateObj).format('DD')}</span>
-          </div>
+          </button>
         ))}
     </div>
   );

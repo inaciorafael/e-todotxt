@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 export default [
   {
     id: 1,
-    icon: <FiInbox color="blue" size={20} />,
+    icon: <FiInbox color="#4877f4" size={15} />,
     title: 'All',
     route: '/all',
   },
@@ -14,7 +14,7 @@ export default [
     id: 2,
     icon: (
       <div className="calendar-icon-container">
-        <BsCalendar color="green" size={20} />
+        <BsCalendar color="#006729" size={15} />
         <span className="calendar-date">{dayjs().format('DD')}</span>
       </div>
     ),
@@ -23,13 +23,13 @@ export default [
   },
   {
     id: 3,
-    icon: <GoCalendar color="purple" size={20} />,
+    icon: <GoCalendar color="#710070" size={15} />,
     title: 'Upcoming',
     route: '/',
   },
   {
     id: 4,
-    icon: <FiInbox color="#7991B4" size={20} />,
+    icon: <FiInbox color="#7991B4" size={15} />,
     title: 'Important',
     route: '/inbox',
   },
