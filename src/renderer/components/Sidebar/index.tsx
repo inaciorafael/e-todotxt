@@ -7,7 +7,6 @@ import data from './data';
 const Sidebar: React.FC = () => {
   const { pathname } = useLocation();
   const history = useHistory();
-  console.log(pathname);
 
   const goToSidebarItem = (link: string) => {
     history.push(link);
@@ -20,13 +19,15 @@ const Sidebar: React.FC = () => {
           key={item.id}
           type="button"
           onClick={() => goToSidebarItem(item.route)}
-          className={`item-container d-flex flex-direction-row align-items-center mb-1 ${
-            pathname === item.route ? 'active' : ''
-          }`}
+          style={{
+            backgroundColor: pathname === item.route ? '#FFF' : 'transparent',
+          }}
+          className="item-container d-flex flex-direction-row align-items-center mb-1"
         >
           {item.icon}
           <div style={{ width: 4 }} />
           <span className="item-title">{item.title}</span>
+          {item.badge > 0 && <span className="bagde-number">{item.badge}</span>}
         </button>
       ))}
     </div>

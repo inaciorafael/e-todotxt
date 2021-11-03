@@ -12,6 +12,7 @@
 
 .item-title {
   color: #000;
+  font-size: 14px;
 }
 
 .calendar-icon-container {
@@ -21,16 +22,17 @@
 
 .calendar-date {
   position: absolute;
-  right: 3px;
-  top: 7px;
-  font-size: 12px;
+  right: 2px;
+  top: 8px;
+  font-size: 10px;
   font-weight: bold;
-  color: green
+  color: #006729
 }
 
 .item-container {
   width: 100%;
   padding: 5px;
+  padding-left: 10px;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   -webkit-transition: background-color 0.1s ease-out;
@@ -42,4 +44,11 @@
 .item-container:hover {
   background-color: #FFF;
   cursor: pointer;
+}
+
+.bagde-number {
+  font-size: 11px;
+  font-weight: bold;
+  color: rgba(0,0,0,0.3);
+  margin-left: 5px;
 }

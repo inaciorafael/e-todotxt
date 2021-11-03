@@ -1,0 +1,67 @@
+.card-container {
+  border-left-width: 4px;
+  border-left-style: solid;
+  padding: 10px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.title-card {
+  text-align: left;
+}
+
+.project-card {
+  text-align: center;
+  background-color: #826095;
+  padding: 5px 10px;
+  margin-left: 5px;
+  border-radius: 100px;
+  color: #FFF;
+  font-size: 13px;
+  user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.context-card {
+  text-align: center;
+  background-color: #ecf3f6;
+  padding: 5px 10px;
+  margin-left: 5px;
+  border-radius: 100px;
+  color: #000;
+  font-size: 13px;
+  user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.priority-card {
+  text-align: center;
+  background-color: #ecf3f6;
+  padding: 5px 10px;
+  margin-left: 5px;
+  border-radius: 100px;
+  color: rgba(0,0,0,0.9);
+  font-weight: bold;
+  font-size: 13px;
+  user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.duedate {
+  font-size: 13px;
+  margin-left: 5px;
+  user-select: none; /* supported by Chrome and Opera */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+}

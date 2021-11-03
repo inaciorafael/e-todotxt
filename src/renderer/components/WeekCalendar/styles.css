@@ -1,20 +1,14 @@
 .weekcalendar-container {
-  /* background-color: red; */
   min-width: 100%;
   border-width: 0;
-  border-bottom-width: 1px;
-  border-style: solid;
-  border-color: #0002;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 5px;
   margin-top: 20px;
 }
 
 .day-container {
-  /* background-color: green; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,6 +20,24 @@
   cursor: pointer;
 }
 
+.day-active {
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-color: #516477;
+}
+
+.day-number-active {
+  color: #516477;
+  font-weight: bold;
+}
+
+.have-task-dot {
+  height: 4px;
+  width: 4px;
+  border-radius: 2px;
+  background-color: #516477;
+}
+
 .weekday-name {
-  color: #000;
+  color: rgba(0,0,0,0.8);
 }
