@@ -37,7 +37,6 @@ const Upcoming: React.FC = () => {
       title: 'Design a prototype',
       done: false,
       priority: 'A',
-      // 2011, 0, 1, 2, 3, 4, 567
       duedate: new Date(2021, 10, 3, 1, 0),
       project: ['+mega', '+viva'],
       context: ['@work'],
@@ -47,7 +46,7 @@ const Upcoming: React.FC = () => {
       title: 'Awesome Event',
       done: false,
       priority: 'Z',
-      duedate: new Date(2021, 9, 3, 1, 0),
+      duedate: new Date(2021, 10, 3, 0, 15),
       project: ['+home'],
       context: null,
     },
@@ -64,6 +63,15 @@ const Upcoming: React.FC = () => {
       context: ['@shopping'],
     },
     {
+      id: 4,
+      title: 'Change the new kof XIV character',
+      done: true,
+      priority: 'A',
+      duedate: new Date(2021, 10, 18, 14, 35),
+      project: ['+kofxiv'],
+      context: ['@unity', '@games'],
+    },
+    {
       id: 3,
       title: 'Send tax return',
       done: true,
@@ -73,7 +81,7 @@ const Upcoming: React.FC = () => {
       context: ['@supermarker'],
     },
     {
-      id: 3,
+      id: 5,
       title: 'Make a new wallpaper for Behance',
       done: true,
       priority: 'R',

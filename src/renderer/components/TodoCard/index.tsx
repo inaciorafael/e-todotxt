@@ -78,43 +78,47 @@ const TodoCard: React.FC<TodoCardProps> = ({
   };
 
   return (
-    <div
-      className="card-container"
-      style={{
-        borderLeftColor: getPriorityStyle(priority),
-      }}
-    >
-      <div>
-        <span className="title-card">{title}</span>
-        <span
-          style={{
-            backgroundColor: getPriorityStyle(priority),
-          }}
-          className="priority-card"
-        >
-          {priority}
-        </span>
-        {project && <span className="project-card">{project}</span>}
-        {context && <span className="context-card">{context}</span>}
-      </div>
-      <div className="d-flex align-items-center">
-        {duedate && (
-          <>
-            <BsCalendar2Week
-              size={15}
-              color={getDueDateFormat(duedate).color}
-            />
-            <span
-              style={{
-                color: getDueDateFormat(duedate).color,
-              }}
-              className="duedate"
-            >
-              {getDueDateFormat(duedate).displayDate}
-            </span>
-          </>
-        )}
-      </div>
+    <div>
+      <button
+        type="button"
+        onClick={() => alert(`title: ${title}, priority: ${priority}`)}
+        className="card-container"
+        style={{
+          borderLeftColor: getPriorityStyle(priority),
+        }}
+      >
+        <div>
+          <span className="title-card">{title}</span>
+          <span
+            style={{
+              backgroundColor: getPriorityStyle(priority),
+            }}
+            className="priority-card"
+          >
+            {priority}
+          </span>
+          {project && <span className="project-card">{project}</span>}
+          {context && <span className="context-card">{context}</span>}
+        </div>
+        <div className="d-flex align-items-center">
+          {duedate && (
+            <>
+              <BsCalendar2Week
+                size={15}
+                color={getDueDateFormat(duedate).color}
+              />
+              <span
+                style={{
+                  color: getDueDateFormat(duedate).color,
+                }}
+                className="duedate"
+              >
+                {getDueDateFormat(duedate).displayDate}
+              </span>
+            </>
+          )}
+        </div>
+      </button>
     </div>
   );
 };
