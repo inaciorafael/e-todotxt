@@ -1,27 +1,6 @@
-@-webkit-keyframes fadeIn {
-0% { opacity: 0.3; }
-100% { opacity: 1; }
-}
-@-moz-keyframes fadeIn {
-0% { opacity: 0.3;}
-100% { opacity: 1; }
-}
-@-o-keyframes fadeIn {
-0% { opacity: 0.3; }
-100% { opacity: 1; }
-}
-@keyframes fadeIn {
-0% { opacity: 0.3; }
-100% { opacity: 1; }
-}
-
 .weekcalendar-container {
-  /* background-color: red; */
   min-width: 100%;
   border-width: 0;
-  border-bottom-width: 1px;
-  border-style: solid;
-  border-color: #0002;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -30,7 +9,6 @@
 }
 
 .day-container {
-  /* background-color: green; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,11 +24,6 @@
   border-bottom-width: 2px;
   border-bottom-style: solid;
   border-color: #516477;
-  transition: position 500ms ease;
-  -webkit-animation: fadeIn 0.8s ease-in-out;
-  -moz-animation: fadeIn 0.8s ease-in-out;
-  -o-animation: fadeIn 0.8s ease-in-out;
-  animation: fadeIn 0.8s ease-in-out;
 }
 
 .day-number-active {

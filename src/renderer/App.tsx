@@ -10,6 +10,7 @@ import configureStore from './store';
 import Upcoming from './pages/Upcoming';
 import All from './pages/All';
 import Today from './pages/Today';
+import Done from './pages/Done';
 
 import { Header, Sidebar } from './components';
 
@@ -27,6 +28,7 @@ export default function App() {
               <Route exact path="/" component={Upcoming} />
               <Route exact path="/all" component={All} />
               <Route exact path="/today" component={Today} />
+              <Route exact path="/done" component={Done} />
             </Switch>
           </Router>
         </div>

@@ -8,7 +8,7 @@ const All: React.FC = () => {
       animate={{ opacity: 1, y: 0 }}
       className="page-container"
     >
-      <span>ALL</span>
+      <h1>All</h1>
     </motion.div>
   );
 };

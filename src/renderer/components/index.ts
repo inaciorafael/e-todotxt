@@ -4,5 +4,14 @@ import Space from './Space';
 import Sidebar from './Sidebar';
 import WeekCalendar from './WeekCalendar';
 import TodoCard from './TodoCard';
+import AddTaskButton from './AddTaskButton';
 
-export { Header, HeaderInput, Space, Sidebar, WeekCalendar, TodoCard };
+export {
+  Header,
+  HeaderInput,
+  Space,
+  Sidebar,
+  WeekCalendar,
+  TodoCard,
+  AddTaskButton,
+};

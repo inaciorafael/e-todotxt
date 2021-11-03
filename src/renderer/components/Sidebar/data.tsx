@@ -1,7 +1,12 @@
 import { FiInbox } from 'react-icons/fi';
 import { BsCalendar } from 'react-icons/bs';
 import { GoCalendar } from 'react-icons/go';
+import { AiOutlineFileDone } from 'react-icons/ai';
 import dayjs from 'dayjs';
+
+const today = 4;
+const upcoming = 27;
+const all = today + upcoming;
 
 export default [
   {
@@ -9,6 +14,7 @@ export default [
     icon: <FiInbox color="#4877f4" size={15} />,
     title: 'All',
     route: '/all',
+    badge: all,
   },
   {
     id: 2,
@@ -20,17 +26,20 @@ export default [
     ),
     title: 'Today',
     route: '/today',
+    badge: today,
   },
   {
     id: 3,
     icon: <GoCalendar color="#710070" size={15} />,
     title: 'Upcoming',
     route: '/',
+    badge: upcoming,
   },
   {
     id: 4,
-    icon: <FiInbox color="#7991B4" size={15} />,
-    title: 'Important',
-    route: '/inbox',
+    icon: <AiOutlineFileDone color="#4e4f53" size={15} />,
+    title: 'Done',
+    route: '/done',
+    badge: 0,
   },
 ];

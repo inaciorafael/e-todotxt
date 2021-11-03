@@ -1,114 +1,129 @@
 import React from 'react';
-import { BiCheck } from 'react-icons/bi';
-import { HiOutlineCalendar } from 'react-icons/hi';
+// import { BiCheck } from 'react-icons/bi';
+import { BsCalendar2Week } from 'react-icons/bs';
 import dayjs from 'dayjs';
 import calendar from 'dayjs/plugin/calendar';
+import isToday from 'dayjs/plugin/isToday';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import isBetween from 'dayjs/plugin/isBetween';
 
 import './styles.css';
 
 interface TodoCardProps {
   title: string;
-  done: boolean;
-  priority: string;
-  duedate: Date;
+  // done: boolean;
+  priority?: string;
+  project?: string[] | null;
+  context?: string[] | null;
+  duedate?: Date | null;
 }
 
 dayjs.extend(calendar);
+dayjs.extend(isToday);
+dayjs.extend(relativeTime);
+dayjs.extend(isBetween);
 
 const TodoCard: React.FC<TodoCardProps> = ({
   title,
-  done,
-  priority,
+  priority = 'Z',
+  project,
+  context,
   duedate,
 }) => {
   const getPriorityStyle = (LetterOfPriority: string) => {
     switch (LetterOfPriority) {
       case 'A':
-        return {
-          backgroundColor: '#ff9090',
-          borderColor: '#ff4040',
-          iconColor: '#FFF',
-        };
+        return '#ff829b';
       case 'B':
-        return {
-          backgroundColor: '#8d6955',
-          borderColor: '#5a4336',
-          iconColor: '#FFF',
-        };
+        return '#fdbcb1';
       case 'C':
-        return {
-          backgroundColor: '#9dba6c',
-          borderColor: '#80a04b',
-          iconColor: '#FFF',
-        };
+        return '#ffeead';
       default:
-        return {
-          backgroundColor: '#ff9090',
-          borderColor: '#ff4040',
-          iconColor: '#FFF',
-        };
+        return '#F0F0F0';
     }
   };
 
-  const getTimeStatus = (duedatetime: Date) => {
-    const duedateTask = dayjs(duedatetime);
+  // const getProjectName = (todotask: string) => {
+  //   // const project = todotask.replace(/(\+[^\s].[A-Za-z0-9]+)/gim, '{$1}');
 
-    if (!dayjs().isBefore(duedateTask)) {
+  //   return project || false;
+  // };
+
+  const getDueDateFormat = (date: Date) => {
+    if (dayjs(date).isToday() && dayjs(date).isAfter(dayjs())) {
       return {
-        color: '#ff4040',
-        isOld: true,
+        color: '#3a925e',
+        displayDate: dayjs(date).format('HH:mm a'),
+      };
+    }
+
+    if (dayjs(date).isBetween(dayjs(), dayjs().add(6, 'days'))) {
+      return {
+        color: '#3a925e',
+        displayDate: dayjs(date).calendar(),
+      };
+    }
+
+    if (dayjs(date).isBefore(dayjs())) {
+      return {
+        color: '#ed5269',
+        displayDate: dayjs().to(dayjs(date)),
       };
     }
 
     return {
-      color: '#80a04b',
-      isOld: false,
+      color: '#3a925e',
+      displayDate: dayjs(date).from(dayjs()),
     };
   };
 
   return (
-    <div>
-      <div className="divider" />
-      <div className="todo-card-container d-flex align-items-center">
-        <div
-          style={{
-            backgroundColor: done
-              ? getPriorityStyle(priority).backgroundColor
-              : '',
-            borderColor: getPriorityStyle(priority).borderColor,
-          }}
-          className="check-container d-flex align-items-center justify-content-center"
-        >
-          {done && (
-            <BiCheck size={25} color={getPriorityStyle(priority).iconColor} />
-          )}
-        </div>
-        <div style={{ width: 10 }} />
+    <div
+      className="card-container"
+      style={{
+        borderLeftColor: getPriorityStyle(priority),
+      }}
+    >
+      <div>
+        <span className="title-card">{title}</span>
         <span
           style={{
-            textDecoration: done ? 'line-through' : '',
-            color: done ? '#0004' : '',
+            backgroundColor: getPriorityStyle(priority),
           }}
+          className="priority-card"
         >
-          {title}
+          {priority}
         </span>
+        {project && <span className="project-card">{project}</span>}
+        {context && <span className="context-card">{context}</span>}
       </div>
       <div className="d-flex align-items-center">
-        <HiOutlineCalendar color={getTimeStatus(duedate).color} />
-        <span
-          className="duedate-day"
-          style={{
-            color: getTimeStatus(duedate).color,
-          }}
-        >
-          {getTimeStatus(duedate).isOld
-            ? dayjs(duedate).calendar()
-            : dayjs(duedate).format('HH:mm')}
-        </span>
+        {duedate && (
+          <>
+            <BsCalendar2Week
+              size={15}
+              color={getDueDateFormat(duedate).color}
+            />
+            <span
+              style={{
+                color: getDueDateFormat(duedate).color,
+              }}
+              className="duedate"
+            >
+              {getDueDateFormat(duedate).displayDate}
+            </span>
+          </>
+        )}
       </div>
-      <div className="divider" />
     </div>
   );
+};
+
+TodoCard.defaultProps = {
+  project: null,
+  context: null,
+  duedate: null,
+  priority: 'Z',
 };
 
 export default TodoCard;

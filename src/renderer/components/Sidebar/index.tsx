@@ -27,6 +27,7 @@ const Sidebar: React.FC = () => {
           {item.icon}
           <div style={{ width: 4 }} />
           <span className="item-title">{item.title}</span>
+          {item.badge > 0 && <span className="bagde-number">{item.badge}</span>}
         </button>
       ))}
     </div>

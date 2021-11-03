@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
+import { motion } from 'framer-motion';
+
 import relativeTime from 'dayjs/plugin/relativeTime';
 import calendar from 'dayjs/plugin/calendar';
 import updateLocale from 'dayjs/plugin/updateLocale';
-import { motion } from 'framer-motion';
-
-import { WeekCalendar, TodoCard } from '../../components';
+import isToday from 'dayjs/plugin/isToday';
+import { WeekCalendar, TodoCard, AddTaskButton } from '../../components';
 
 dayjs.extend(relativeTime);
 dayjs.extend(calendar);
+dayjs.extend(isToday);
 dayjs.extend(updateLocale);
 
 const Upcoming: React.FC = () => {
@@ -35,24 +37,49 @@ const Upcoming: React.FC = () => {
       title: 'Design a prototype',
       done: false,
       priority: 'A',
-      duedate: new Date(2021, 9, 31),
+      // 2011, 0, 1, 2, 3, 4, 567
+      duedate: new Date(2021, 10, 3, 1, 0),
+      project: ['+mega', '+viva'],
+      context: ['@work'],
+    },
+    {
+      id: 2,
+      title: 'Awesome Event',
+      done: false,
+      priority: 'Z',
+      duedate: new Date(2021, 9, 3, 1, 0),
+      project: ['+home'],
+      context: null,
     },
   ];
 
   const tasks = [
     {
       id: 2,
-      title: 'Organize photo shoot',
+      title: 'Simple task with project damasco',
       done: true,
       priority: 'B',
-      duedate: new Date(2021, 10, 31),
+      duedate: new Date(2021, 10, 15, 2, 30),
+      project: null,
+      context: ['@shopping'],
     },
     {
       id: 3,
       title: 'Send tax return',
       done: true,
       priority: 'C',
-      duedate: new Date(2021, 11, 20),
+      duedate: new Date(2021, 10, 3, 22, 30),
+      project: ['+finances'],
+      context: ['@supermarker'],
+    },
+    {
+      id: 3,
+      title: 'Make a new wallpaper for Behance',
+      done: true,
+      priority: 'R',
+      duedate: null,
+      project: null,
+      context: ['@web', '@internet'],
     },
   ];
 
@@ -67,32 +94,45 @@ const Upcoming: React.FC = () => {
         selectedDate={selectedDate}
         onChangeDate={setSelectedDate}
       />
-      <div style={{ height: 30 }} />
-      <h5>Overdue</h5>
-      {oldTasks.map((task) => (
-        <TodoCard
-          key={task.id}
-          priority={task.priority}
-          done={task.done}
-          title={task.title}
-          duedate={task.duedate}
-        />
-      ))}
-      <div style={{ height: 15 }} />
-      <h5>
-        {getRelativeTime()} - {dayjs(selectedDate).format('DD MMM')}
-      </h5>
-      <div style={{ height: 15 }} />
-      {tasks.map((task) => (
-        <TodoCard
-          key={task.id}
-          priority={task.priority}
-          done={task.done}
-          title={task.title}
-          duedate={task.duedate}
-        />
-      ))}
-      <div style={{ height: 15 }} />
+      <div style={{ height: 10 }} />
+      <motion.div
+        key={String(selectedDate)}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        {dayjs(selectedDate).isToday() && (
+          <>
+            <h5>Overdue</h5>
+            {oldTasks.map((task) => (
+              <TodoCard
+                key={task.id}
+                priority={task.priority}
+                // done={task.done}
+                title={task.title}
+                project={task.project}
+                context={task.context}
+                duedate={task.duedate}
+              />
+            ))}
+          </>
+        )}
+        <div style={{ height: 15 }} />
+        <h5>{getRelativeTime()}</h5>
+        <div style={{ height: 15 }} />
+        {tasks.map((task) => (
+          <TodoCard
+            key={task.id}
+            priority={task.priority}
+            // done={task.done}
+            title={task.title}
+            project={task.project}
+            context={task.context}
+            duedate={task.duedate}
+          />
+        ))}
+        <div style={{ height: 15 }} />
+        <AddTaskButton onClick={() => alert('Add task!')} />
+      </motion.div>
     </motion.div>
   );
 };

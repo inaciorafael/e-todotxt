@@ -5,7 +5,7 @@ import { AiOutlineMenu, AiOutlinePlus } from 'react-icons/ai';
 import { IoIosNotifications, IoIosSettings } from 'react-icons/io';
 import { RiTodoFill } from 'react-icons/ri';
 
-import { HeaderInput } from '..';
+import HeaderInput from '../HeaderInput';
 
 import './styles.css';
 

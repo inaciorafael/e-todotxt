@@ -8,6 +8,8 @@ interface WeekCalendarProps {
   selectedDate: Date;
 }
 
+const WEEKEND_DAYS_NUMBERS = [0, 6]; // Sat - 6, Sun - 0
+
 const WeekCalendar: React.FC<WeekCalendarProps> = ({
   onChangeDate,
   selectedDate,
@@ -20,6 +22,10 @@ const WeekCalendar: React.FC<WeekCalendarProps> = ({
       .map((number) => dayjs().add(number, 'days').toDate());
 
     setWeekDays(weekdayslist);
+  };
+
+  const isWeekend = (date: Date) => {
+    return WEEKEND_DAYS_NUMBERS.includes(dayjs(date).day());
   };
 
   useEffect(() => {
@@ -40,8 +46,18 @@ const WeekCalendar: React.FC<WeekCalendarProps> = ({
                 : ''
             }`}
           >
-            <span className="weekday-name">{dayjs(dateObj).format('ddd')}</span>
             <span
+              style={{
+                color: isWeekend(dateObj) ? '#ed5269' : '',
+              }}
+              className="weekday-name"
+            >
+              {dayjs(dateObj).format('ddd')}
+            </span>
+            <span
+              style={{
+                color: isWeekend(dateObj) ? '#ed5269' : '',
+              }}
               className={`weekday-name ${
                 dayjs(dateObj).isSame(dayjs(selectedDate), 'date')
                   ? 'day-number-active'
