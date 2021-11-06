@@ -1,14 +1,18 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import './styles.css';
 import data from './data';
+import SearchActions from '../../store/ducks/search';
 
 const Sidebar: React.FC = () => {
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
   const history = useHistory();
 
   const goToSidebarItem = (link: string) => {
+    dispatch(SearchActions.addPageForGoBack(link));
     history.push(link);
   };
 

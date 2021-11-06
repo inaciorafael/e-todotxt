@@ -14,7 +14,9 @@ dayjs.extend(isToday);
 dayjs.extend(updateLocale);
 
 const Upcoming: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date>(
+    dayjs().add(1, 'day').toDate()
+  );
 
   const getRelativeTime = () => {
     dayjs.updateLocale('en', {
@@ -30,27 +32,6 @@ const Upcoming: React.FC = () => {
 
     return dayjs(selectedDate).calendar();
   };
-
-  const oldTasks = [
-    {
-      id: 1,
-      title: 'Design a prototype',
-      done: false,
-      priority: 'A',
-      duedate: new Date(2021, 10, 3, 1, 0),
-      project: ['+mega', '+viva'],
-      context: ['@work'],
-    },
-    {
-      id: 2,
-      title: 'Awesome Event',
-      done: false,
-      priority: 'Z',
-      duedate: new Date(2021, 10, 3, 0, 15),
-      project: ['+home'],
-      context: null,
-    },
-  ];
 
   const tasks = [
     {
@@ -108,22 +89,6 @@ const Upcoming: React.FC = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        {dayjs(selectedDate).isToday() && (
-          <>
-            <h5>Overdue</h5>
-            {oldTasks.map((task) => (
-              <TodoCard
-                key={task.id}
-                priority={task.priority}
-                // done={task.done}
-                title={task.title}
-                project={task.project}
-                context={task.context}
-                duedate={task.duedate}
-              />
-            ))}
-          </>
-        )}
         <div style={{ height: 15 }} />
         <h5>{getRelativeTime()}</h5>
         <div style={{ height: 15 }} />

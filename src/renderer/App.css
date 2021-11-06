@@ -50,6 +50,11 @@ button {
   opacity: 0.9;
 }
 
+.not-task-container {
+  color: rgba(0,0,0,0.5);
+  height: 90%;
+}
+
 li {
   list-style: none;
 }

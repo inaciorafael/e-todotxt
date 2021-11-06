@@ -9,6 +9,9 @@ const Done: React.FC = () => {
       className="page-container"
     >
       <h1>Done</h1>
+      <div className="not-task-container d-flex align-items-center justify-content-center">
+        <h5>You have not completed any tasks.</h5>
+      </div>
     </motion.div>
   );
 };

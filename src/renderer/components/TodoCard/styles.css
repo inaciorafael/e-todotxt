@@ -6,6 +6,11 @@
   text-align: left;
 }
 
+.done-container {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 .title-card {
   text-align: left;
 }

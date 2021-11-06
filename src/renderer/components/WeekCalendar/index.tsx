@@ -15,11 +15,12 @@ const WeekCalendar: React.FC<WeekCalendarProps> = ({
   selectedDate,
 }) => {
   const [weekdays, setWeekDays] = useState<Date[]>([]);
+  const tomorrow = dayjs().add(1, 'day');
 
   const getWeekDays = () => {
     const weekdayslist = Array.from({ length: 7 })
       .map((_, index) => index)
-      .map((number) => dayjs().add(number, 'days').toDate());
+      .map((number) => dayjs(tomorrow).add(number, 'days').toDate());
 
     setWeekDays(weekdayslist);
   };
