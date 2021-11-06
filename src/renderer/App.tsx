@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.css';
@@ -22,6 +27,7 @@ export default function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router>
+          <Redirect exact from="/today" to="today" />
           <Header />
           <div className="d-flex flex-direction-row">
             <Sidebar />
