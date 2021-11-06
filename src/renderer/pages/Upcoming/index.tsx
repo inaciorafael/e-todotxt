@@ -14,7 +14,9 @@ dayjs.extend(isToday);
 dayjs.extend(updateLocale);
 
 const Upcoming: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date>(
+    dayjs().add(1, 'day').toDate()
+  );
 
   const getRelativeTime = () => {
     dayjs.updateLocale('en', {
@@ -31,54 +33,33 @@ const Upcoming: React.FC = () => {
     return dayjs(selectedDate).calendar();
   };
 
-  const oldTasks = [
-    {
-      id: 1,
-      title: 'Design a prototype',
-      done: false,
-      priority: 'A',
-      duedate: new Date(2021, 10, 3, 1, 0),
-      project: ['+mega', '+viva'],
-      context: ['@work'],
-    },
-    {
-      id: 2,
-      title: 'Awesome Event',
-      done: false,
-      priority: 'Z',
-      duedate: new Date(2021, 10, 3, 0, 15),
-      project: ['+home'],
-      context: null,
-    },
-  ];
-
   const tasks = [
     {
-      id: 2,
-      title: 'Simple task with project damasco',
-      done: true,
-      priority: 'B',
-      duedate: new Date(2021, 10, 15, 2, 30),
-      project: null,
-      context: ['@shopping'],
-    },
-    {
       id: 4,
-      title: 'Change the new kof XIV character',
+      title: 'One Piece Marathon to Wano',
       done: true,
       priority: 'A',
-      duedate: new Date(2021, 10, 18, 14, 35),
-      project: ['+kofxiv'],
-      context: ['@unity', '@games'],
+      duedate: new Date(2021, 10, 6, 20, 35),
+      project: ['+entertainment'],
+      context: ['@home'],
     },
     {
       id: 3,
-      title: 'Send tax return',
+      title: 'Buy a nunchaku',
+      done: false,
+      priority: 'B',
+      duedate: new Date(2021, 10, 6, 19, 0),
+      project: null,
+      context: null,
+    },
+    {
+      id: 2,
+      title: 'Simple task',
       done: true,
-      priority: 'C',
-      duedate: new Date(2021, 10, 3, 22, 30),
-      project: ['+finances'],
-      context: ['@supermarker'],
+      priority: 'Z',
+      // duedate: new Date(2021, 10, 15, 2, 30),
+      project: null,
+      context: null,
     },
     {
       id: 5,
@@ -86,8 +67,8 @@ const Upcoming: React.FC = () => {
       done: true,
       priority: 'R',
       duedate: null,
-      project: null,
-      context: ['@web', '@internet'],
+      project: ['+design'],
+      context: null,
     },
   ];
 
@@ -108,24 +89,8 @@ const Upcoming: React.FC = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        {dayjs(selectedDate).isToday() && (
-          <>
-            <h5>Overdue</h5>
-            {oldTasks.map((task) => (
-              <TodoCard
-                key={task.id}
-                priority={task.priority}
-                // done={task.done}
-                title={task.title}
-                project={task.project}
-                context={task.context}
-                duedate={task.duedate}
-              />
-            ))}
-          </>
-        )}
         <div style={{ height: 15 }} />
-        <h5>{getRelativeTime()}</h5>
+        <h5>You have 4 tasks to {getRelativeTime()}</h5>
         <div style={{ height: 15 }} />
         {tasks.map((task) => (
           <TodoCard
@@ -139,7 +104,7 @@ const Upcoming: React.FC = () => {
           />
         ))}
         <div style={{ height: 15 }} />
-        <AddTaskButton onClick={() => alert('Add task!')} />
+        <AddTaskButton />
       </motion.div>
     </motion.div>
   );

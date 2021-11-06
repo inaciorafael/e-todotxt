@@ -50,6 +50,11 @@ button {
   opacity: 0.9;
 }
 
+.not-task-container {
+  color: rgba(0,0,0,0.5);
+  height: 90%;
+}
+
 li {
   list-style: none;
 }
@@ -64,6 +69,11 @@ a {
 a:hover {
   opacity: 1;
   text-decoration: none;
+}
+
+textarea {
+  margin: 0;
+  border-radius: 0;
 }
 
 /* width */

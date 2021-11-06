@@ -1,6 +1,7 @@
 import React from 'react';
-// import { BiCheck } from 'react-icons/bi';
 import { BsCalendar2Week } from 'react-icons/bs';
+import { motion } from 'framer-motion';
+import toast, { Toaster } from 'react-hot-toast';
 import dayjs from 'dayjs';
 import calendar from 'dayjs/plugin/calendar';
 import isToday from 'dayjs/plugin/isToday';
@@ -11,7 +12,7 @@ import './styles.css';
 
 interface TodoCardProps {
   title: string;
-  // done: boolean;
+  done?: boolean;
   priority?: string;
   project?: string[] | null;
   context?: string[] | null;
@@ -29,6 +30,7 @@ const TodoCard: React.FC<TodoCardProps> = ({
   project,
   context,
   duedate,
+  done,
 }) => {
   const getPriorityStyle = (LetterOfPriority: string) => {
     switch (LetterOfPriority) {
@@ -77,18 +79,30 @@ const TodoCard: React.FC<TodoCardProps> = ({
     };
   };
 
+  const notify = () =>
+    toast.success('Successfully created!', {
+      position: 'bottom-right',
+    });
+
   return (
-    <div>
+    <motion.div className={`${done ? 'done-container' : ''}`}>
       <button
         type="button"
-        onClick={() => alert(`title: ${title}, priority: ${priority}`)}
+        onClick={notify}
         className="card-container"
         style={{
           borderLeftColor: getPriorityStyle(priority),
         }}
       >
         <div>
-          <span className="title-card">{title}</span>
+          <span
+            style={{
+              textDecoration: done ? 'line-through' : '',
+            }}
+            className="title-card"
+          >
+            {title}
+          </span>
           <span
             style={{
               backgroundColor: getPriorityStyle(priority),
@@ -97,8 +111,16 @@ const TodoCard: React.FC<TodoCardProps> = ({
           >
             {priority}
           </span>
-          {project && <span className="project-card">{project}</span>}
-          {context && <span className="context-card">{context}</span>}
+          {project &&
+            project?.length > 0 &&
+            project?.map((projectName) => (
+              <span className="project-card">{projectName}</span>
+            ))}
+          {context &&
+            context.length > 0 &&
+            context.map((contextName) => (
+              <span className="context-card">{contextName}</span>
+            ))}
         </div>
         <div className="d-flex align-items-center">
           {duedate && (
@@ -119,7 +141,8 @@ const TodoCard: React.FC<TodoCardProps> = ({
           )}
         </div>
       </button>
-    </div>
+      <Toaster />
+    </motion.div>
   );
 };
 
@@ -128,6 +151,7 @@ TodoCard.defaultProps = {
   context: null,
   duedate: null,
   priority: 'Z',
+  done: false,
 };
 
 export default TodoCard;

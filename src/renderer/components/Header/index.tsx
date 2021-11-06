@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { AiOutlineMenu, AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlinePlus } from 'react-icons/ai';
 import { IoIosNotifications, IoIosSettings } from 'react-icons/io';
 import { RiTodoFill } from 'react-icons/ri';
 
@@ -18,13 +18,6 @@ const Header: React.FC = () => {
   return (
     <HeaderContainer className="d-flex align-items-center justify-content-between p-2">
       <div className="d-flex flex-direction-row align-items-center">
-        <div style={{ width: 10 }} />
-        <motion.div
-          whileHover={{ scale: 1.2 }}
-          className="d-flex align-items-center"
-        >
-          <AiOutlineMenu className="icon-btn" size={20} color="#FFF" />
-        </motion.div>
         <HeaderInput />
       </div>
       <div className="d-flex flex-direction-row align-items-center justify-content-between buttons-container">
