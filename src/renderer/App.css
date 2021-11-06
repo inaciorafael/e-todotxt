@@ -71,6 +71,11 @@ a:hover {
   text-decoration: none;
 }
 
+textarea {
+  margin: 0;
+  border-radius: 0;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

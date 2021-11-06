@@ -6,61 +6,43 @@ import { TodoCard, AddTaskButton } from '../../components';
 const Today: React.FC = () => {
   const oldTasks = [
     {
-      id: 1,
-      title: 'Design a prototype',
-      done: false,
-      priority: 'A',
-      duedate: new Date(2021, 10, 3, 1, 0),
-      project: ['+mega', '+viva'],
-      context: ['@work'],
-    },
-    {
       id: 2,
-      title: 'Awesome Event',
+      title: 'Studying the electron framework',
       done: false,
       priority: 'Z',
-      duedate: new Date(2021, 10, 3, 0, 15),
-      project: ['+home'],
-      context: null,
+      duedate: new Date(2021, 10, 6, 10, 15),
+      project: ['+learn'],
+      context: ['@home'],
     },
   ];
 
   const tasks = [
     {
-      id: 2,
-      title: 'Simple task with project damasco',
-      done: true,
-      priority: 'B',
-      duedate: new Date(2021, 10, 15, 2, 30),
-      project: null,
-      context: ['@shopping'],
+      id: 3,
+      title: 'Put screenshots in Readme.md on GitHub',
+      done: false,
+      priority: 'A',
+      duedate: new Date(2021, 10, 6, 21, 0),
+      project: ['+etodo.txt'],
+      context: ['@home'],
     },
     {
       id: 4,
-      title: 'Change the new kof XIV character',
-      done: true,
-      priority: 'A',
-      duedate: new Date(2021, 10, 18, 14, 35),
-      project: ['+kofxiv'],
-      context: ['@unity', '@games'],
+      title: 'Create scrot script to select window',
+      done: false,
+      priority: 'B',
+      // duedate: new Date(2021, 10, 6, 17, 40),
+      project: ['+linuxrice'],
+      context: null,
     },
     {
-      id: 3,
-      title: 'Send tax return',
-      done: true,
+      id: 20,
+      title: 'Create Javascript library to consume todo.txt and done.txt files',
+      done: false,
       priority: 'C',
-      duedate: new Date(2021, 10, 3, 22, 30),
-      project: ['+finances'],
-      context: ['@supermarker'],
-    },
-    {
-      id: 5,
-      title: 'Make a new wallpaper for Behance',
-      done: true,
-      priority: 'R',
-      duedate: null,
-      project: null,
-      context: ['@web', '@internet'],
+      duedate: new Date(2021, 10, 6, 23, 30),
+      project: ['+etodo.txt'],
+      context: ['@home'],
     },
   ];
 
@@ -101,6 +83,16 @@ const Today: React.FC = () => {
           duedate={task.duedate}
         />
       ))}
+      <div style={{ height: 15 }} />
+      <h5>Done</h5>
+      <TodoCard
+        priority="A"
+        done
+        title="Send screenshot to community on Gitter"
+        project={['+etodo.txt']}
+        context={['@home']}
+        duedate={new Date(2021, 10, 6, 15, 0)}
+      />
     </motion.div>
   );
 };

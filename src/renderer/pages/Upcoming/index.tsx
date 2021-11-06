@@ -35,31 +35,31 @@ const Upcoming: React.FC = () => {
 
   const tasks = [
     {
-      id: 2,
-      title: 'Simple task with project damasco',
-      done: true,
-      priority: 'B',
-      duedate: new Date(2021, 10, 15, 2, 30),
-      project: null,
-      context: ['@shopping'],
-    },
-    {
       id: 4,
-      title: 'Change the new kof XIV character',
+      title: 'One Piece Marathon to Wano',
       done: true,
       priority: 'A',
-      duedate: new Date(2021, 10, 18, 14, 35),
-      project: ['+kofxiv'],
-      context: ['@unity', '@games'],
+      duedate: new Date(2021, 10, 6, 20, 35),
+      project: ['+entertainment'],
+      context: ['@home'],
     },
     {
       id: 3,
-      title: 'Send tax return',
+      title: 'Buy a nunchaku',
+      done: false,
+      priority: 'B',
+      duedate: new Date(2021, 10, 6, 19, 0),
+      project: null,
+      context: null,
+    },
+    {
+      id: 2,
+      title: 'Simple task',
       done: true,
-      priority: 'C',
-      duedate: new Date(2021, 10, 3, 22, 30),
-      project: ['+finances'],
-      context: ['@supermarker'],
+      priority: 'Z',
+      // duedate: new Date(2021, 10, 15, 2, 30),
+      project: null,
+      context: null,
     },
     {
       id: 5,
@@ -67,8 +67,8 @@ const Upcoming: React.FC = () => {
       done: true,
       priority: 'R',
       duedate: null,
-      project: null,
-      context: ['@web', '@internet'],
+      project: ['+design'],
+      context: null,
     },
   ];
 
@@ -90,7 +90,7 @@ const Upcoming: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
       >
         <div style={{ height: 15 }} />
-        <h5>{getRelativeTime()}</h5>
+        <h5>You have 4 tasks to {getRelativeTime()}</h5>
         <div style={{ height: 15 }} />
         {tasks.map((task) => (
           <TodoCard

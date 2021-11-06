@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0);
   z-index: 1;
 }
 
@@ -57,4 +57,22 @@
   color: #000;
   border: 0;
   outline: 0;
+}
+
+.action-btn {
+  background-color: #FAFAFA;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.action-btn:hover {
+  -webkit-filter: brightness(97%);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }

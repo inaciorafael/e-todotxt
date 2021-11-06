@@ -28,8 +28,8 @@ const Search: React.FC = () => {
         done={false}
         priority="R"
         duedate={null}
-        project={null}
-        context={['@web', '@internet']}
+        project={['+design']}
+        context={null}
       />
       <TodoCard
         title="Task mock for screenshot"
@@ -37,7 +37,7 @@ const Search: React.FC = () => {
         priority="A"
         duedate={null}
         project={['+e-todo.txt']}
-        context={['@home', '@internet']}
+        context={['@home']}
       />
     </motion.div>
   );
