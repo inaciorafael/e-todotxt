@@ -1,6 +1,7 @@
 import React from 'react';
-// import { BiCheck } from 'react-icons/bi';
 import { BsCalendar2Week } from 'react-icons/bs';
+import { motion } from 'framer-motion';
+import toast, { Toaster } from 'react-hot-toast';
 import dayjs from 'dayjs';
 import calendar from 'dayjs/plugin/calendar';
 import isToday from 'dayjs/plugin/isToday';
@@ -78,11 +79,16 @@ const TodoCard: React.FC<TodoCardProps> = ({
     };
   };
 
+  const notify = () =>
+    toast.success('Successfully created!', {
+      position: 'bottom-right',
+    });
+
   return (
-    <div className={`${done ? 'done-container' : ''}`}>
+    <motion.div className={`${done ? 'done-container' : ''}`}>
       <button
         type="button"
-        onClick={() => alert(`title: ${title}, priority: ${priority}`)}
+        onClick={notify}
         className="card-container"
         style={{
           borderLeftColor: getPriorityStyle(priority),
@@ -135,7 +141,8 @@ const TodoCard: React.FC<TodoCardProps> = ({
           )}
         </div>
       </button>
-    </div>
+      <Toaster />
+    </motion.div>
   );
 };
 

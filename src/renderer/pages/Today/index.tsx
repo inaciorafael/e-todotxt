@@ -73,7 +73,7 @@ const Today: React.FC = () => {
       <div style={{ height: 5 }} />
       <div className="d-flex align-items-center justify-content-between">
         <h5>{dayjs().format('DD ddd MMMM YYYY')}</h5>
-        <AddTaskButton onClick={() => {}} />
+        <AddTaskButton />
       </div>
       <div style={{ height: 15 }} />
       <h5>Overdue</h5>

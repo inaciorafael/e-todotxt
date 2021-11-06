@@ -1,0 +1,60 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.1);
+  z-index: 1;
+}
+
+.add-task-container {
+  background-color: #FFF;
+  width: 70%;
+  min-height: 10%;
+  border-radius: 15px;
+  padding: 10px 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.input-add-task {
+  border: none;
+  color: #000;
+  border: 0;
+  outline: 0;
+  margin-left: 5px;
+  max-height: 25px;
+  resize: auto;
+  overflow: hidden;
+  min-height: 50px;
+  max-height: 100px;
+}
+
+.input-add-task:focus {
+  outline: none !important;
+}
+
+.input-add-task::placeholder {
+  color: #FFF9;
+  opacity: 1;
+}
+
+.content {
+  width: 100%;
+}
+
+.footer {
+  width: 100%;
+  padding: 10px;
+}
+
+.textarea-task-title {
+  width: 100%;
+  height: inherit;
+  height: auto;
+  border: 0;
+  outline: 0;
+  color: #000;
+  border: 0;
+  outline: 0;
+}

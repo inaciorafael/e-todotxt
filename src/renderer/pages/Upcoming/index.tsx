@@ -104,7 +104,7 @@ const Upcoming: React.FC = () => {
           />
         ))}
         <div style={{ height: 15 }} />
-        <AddTaskButton onClick={() => alert('Add task!')} />
+        <AddTaskButton />
       </motion.div>
     </motion.div>
   );
