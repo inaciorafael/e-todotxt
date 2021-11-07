@@ -6,7 +6,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import calendar from 'dayjs/plugin/calendar';
 import updateLocale from 'dayjs/plugin/updateLocale';
 import isToday from 'dayjs/plugin/isToday';
-import { WeekCalendar, TodoCard, AddTaskButton } from '../../components';
+import { WeekCalendar, AddTaskButton } from '../../components';
 
 dayjs.extend(relativeTime);
 dayjs.extend(calendar);
@@ -33,45 +33,6 @@ const Upcoming: React.FC = () => {
     return dayjs(selectedDate).calendar();
   };
 
-  const tasks = [
-    {
-      id: 4,
-      title: 'One Piece Marathon to Wano',
-      done: true,
-      priority: 'A',
-      duedate: new Date(2021, 10, 6, 20, 35),
-      project: ['+entertainment'],
-      context: ['@home'],
-    },
-    {
-      id: 3,
-      title: 'Buy a nunchaku',
-      done: false,
-      priority: 'B',
-      duedate: new Date(2021, 10, 6, 19, 0),
-      project: null,
-      context: null,
-    },
-    {
-      id: 2,
-      title: 'Simple task',
-      done: true,
-      priority: 'Z',
-      // duedate: new Date(2021, 10, 15, 2, 30),
-      project: null,
-      context: null,
-    },
-    {
-      id: 5,
-      title: 'Make a new wallpaper for Behance',
-      done: true,
-      priority: 'R',
-      duedate: null,
-      project: ['+design'],
-      context: null,
-    },
-  ];
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -92,17 +53,6 @@ const Upcoming: React.FC = () => {
         <div style={{ height: 15 }} />
         <h5>You have 4 tasks to {getRelativeTime()}</h5>
         <div style={{ height: 15 }} />
-        {tasks.map((task) => (
-          <TodoCard
-            key={task.id}
-            priority={task.priority}
-            // done={task.done}
-            title={task.title}
-            project={task.project}
-            context={task.context}
-            duedate={task.duedate}
-          />
-        ))}
         <div style={{ height: 15 }} />
         <AddTaskButton />
       </motion.div>

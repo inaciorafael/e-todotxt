@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useSelector, RootStateOrAny } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { TodoCard } from '../../components';
+// import { TodoCard } from '../../components';
 
 const Search: React.FC = () => {
   const history = useHistory();
@@ -23,22 +23,6 @@ const Search: React.FC = () => {
       className="page-container"
     >
       <h1>2 results for {`"${word}"`}</h1>
-      <TodoCard
-        title="Make a new wallpaper for Behance"
-        done={false}
-        priority="R"
-        duedate={null}
-        project={['+design']}
-        context={null}
-      />
-      <TodoCard
-        title="Task mock for screenshot"
-        done
-        priority="A"
-        duedate={null}
-        project={['+e-todo.txt']}
-        context={['@home']}
-      />
     </motion.div>
   );
 };
