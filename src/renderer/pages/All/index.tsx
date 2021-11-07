@@ -1,65 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ipcRenderer } from 'electron';
 
 import { TodoCard } from '../../components';
+import { TaskProps } from '../../interfaces';
 
 const All: React.FC = () => {
-  const tasks = [
-    {
-      id: 12,
-      title: 'Design a prototype',
-      done: true,
-      priority: 'A',
-      duedate: new Date(2021, 10, 3, 1, 0),
-      project: ['+mega', '+viva'],
-      context: ['@work'],
-    },
-    {
-      id: 24,
-      title: 'Awesome Event',
-      done: true,
-      priority: 'A',
-      duedate: new Date(2021, 10, 3, 0, 15),
-      project: ['+home'],
-      context: null,
-    },
-    {
-      id: 2,
-      title: 'Simple task with project damasco',
-      done: false,
-      priority: 'A',
-      duedate: new Date(2021, 10, 15, 2, 30),
-      project: null,
-      context: ['@shopping'],
-    },
-    {
-      id: 4,
-      title: 'Change the new kof XIV character',
-      done: false,
-      priority: 'B',
-      duedate: new Date(2021, 10, 18, 14, 35),
-      project: ['+kofxiv'],
-      context: ['@unity', '@games'],
-    },
-    {
-      id: 3,
-      title: 'Send tax return',
-      done: false,
-      priority: 'C',
-      duedate: new Date(2021, 10, 3, 22, 30),
-      project: ['+finances'],
-      context: ['@supermarker'],
-    },
-    {
-      id: 5,
-      title: 'Make a new wallpaper for Behance',
-      done: false,
-      priority: 'C',
-      duedate: null,
-      project: null,
-      context: ['@web', '@internet'],
-    },
-  ];
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
+
+  const getAllTasks = () => {
+    ipcRenderer.send('get-all-tasks');
+    ipcRenderer.on('get-all-tasks', (_event, response) => {
+      setTasks(response);
+    });
+  };
+
+  useEffect(() => {
+    getAllTasks();
+  }, []);
 
   return (
     <motion.div
@@ -68,18 +26,25 @@ const All: React.FC = () => {
       className="page-container"
     >
       <h1>All</h1>
+      {tasks.length === 0 && (
+        <div className="not-task-container d-flex align-items-center justify-content-center">
+          <h5>You don't have any tasks to complete.</h5>
+        </div>
+      )}
       <div style={{ height: 15 }} />
-      {tasks.map((task) => (
-        <TodoCard
-          key={task.id}
-          priority={task.priority}
-          done={task.done}
-          title={task.title}
-          project={task.project}
-          context={task.context}
-          duedate={task.duedate}
-        />
-      ))}
+      {tasks.length > 0 &&
+        tasks.map((task) => (
+          <div key={task.key}>
+            <TodoCard
+              priority={task.priority}
+              done={task.done}
+              title={task.description}
+              project={task.project}
+              context={task.context}
+              duedate={task.dueDate}
+            />
+          </div>
+        ))}
     </motion.div>
   );
 };
