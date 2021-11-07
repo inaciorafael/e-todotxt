@@ -7,6 +7,7 @@ import calendar from 'dayjs/plugin/calendar';
 import isToday from 'dayjs/plugin/isToday';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import isBetween from 'dayjs/plugin/isBetween';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 import './styles.css';
 
@@ -17,12 +18,17 @@ interface TodoCardProps {
   project?: string[] | null;
   context?: string[] | null;
   duedate?: Date | null;
+  time: string | null;
+  completionDate: Date | null;
+  creationDate: Date | null;
+  id: number;
 }
 
 dayjs.extend(calendar);
 dayjs.extend(isToday);
 dayjs.extend(relativeTime);
 dayjs.extend(isBetween);
+dayjs.extend(customParseFormat);
 
 const TodoCard: React.FC<TodoCardProps> = ({
   title,
@@ -31,7 +37,13 @@ const TodoCard: React.FC<TodoCardProps> = ({
   context,
   duedate,
   done,
+  time,
+  completionDate,
+  creationDate,
+  id,
 }) => {
+  console.log(completionDate, creationDate, id, time);
+
   const getPriorityStyle = (LetterOfPriority: string) => {
     switch (LetterOfPriority) {
       case 'A':
@@ -44,12 +56,6 @@ const TodoCard: React.FC<TodoCardProps> = ({
         return '#F0F0F0';
     }
   };
-
-  // const getProjectName = (todotask: string) => {
-  //   // const project = todotask.replace(/(\+[^\s].[A-Za-z0-9]+)/gim, '{$1}');
-
-  //   return project || false;
-  // };
 
   const getDueDateFormat = (date: Date) => {
     if (dayjs(date).isToday() && dayjs(date).isAfter(dayjs())) {
@@ -146,6 +152,7 @@ const TodoCard: React.FC<TodoCardProps> = ({
             </>
           )}
         </div>
+        {time && <span>{dayjs(time).format('HH:mm')}</span>}
       </button>
       <Toaster />
     </motion.div>

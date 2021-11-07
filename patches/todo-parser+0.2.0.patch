@@ -1,0 +1,22 @@
+diff --git a/node_modules/todo-parser/lib/Parser.js b/node_modules/todo-parser/lib/Parser.js
+index c278ff9..8c58804 100644
+--- a/node_modules/todo-parser/lib/Parser.js
++++ b/node_modules/todo-parser/lib/Parser.js
+@@ -131,7 +131,7 @@ class Parser {
+      * @private
+      */
+     _parseContext(data) {
+-        let match = data.original.match(/\+([A-Za-z0-9]*)/g)
++        let match = data.original.match(/@([A-Za-z0-9]*)/g)
+         if (match !== null) {
+             for (let i = 0; i < match.length; i++)  {
+                 data.context.push(match[i].substring(1))
+@@ -148,7 +148,7 @@ class Parser {
+      * @private
+      */
+     _parseProject(data) {
+-        let match = data.original.match(/@([A-Za-z0-9]*)/g)
++        let match = data.original.match(/\+([A-Za-z0-9]*)/g)
+         if (match !== null) {
+             for (let i = 0; i < match.length; i++)  {
+                 data.project.push(match[i].substring(1))
