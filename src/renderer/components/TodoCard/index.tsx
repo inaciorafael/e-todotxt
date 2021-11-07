@@ -26,7 +26,7 @@ dayjs.extend(isBetween);
 
 const TodoCard: React.FC<TodoCardProps> = ({
   title,
-  priority = 'Z',
+  priority = '',
   project,
   context,
   duedate,
@@ -103,23 +103,29 @@ const TodoCard: React.FC<TodoCardProps> = ({
           >
             {title}
           </span>
-          <span
-            style={{
-              backgroundColor: getPriorityStyle(priority),
-            }}
-            className="priority-card"
-          >
-            {priority}
-          </span>
+          {priority && (
+            <span
+              style={{
+                backgroundColor: getPriorityStyle(priority),
+              }}
+              className="priority-card"
+            >
+              {priority}
+            </span>
+          )}
           {project &&
             project?.length > 0 &&
             project?.map((projectName) => (
-              <span className="project-card">{projectName}</span>
+              <span key={projectName} className="project-card">
+                +{projectName}
+              </span>
             ))}
           {context &&
             context.length > 0 &&
             context.map((contextName) => (
-              <span className="context-card">{contextName}</span>
+              <span key={contextName} className="context-card">
+                @{contextName}
+              </span>
             ))}
         </div>
         <div className="d-flex align-items-center">

@@ -37,6 +37,7 @@ const HeaderInput: React.FC = () => {
     <div className="d-flex p-2 flex-direction-row align-items-center input-container">
       <AiOutlineSearch color="#FFF" size={20} />
       <input
+        spellCheck={false}
         onClick={backSearchPageIfThereIsResearch}
         onChange={handleChangeSearchText}
         value={word}
