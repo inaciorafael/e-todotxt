@@ -1,23 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ipcRenderer } from 'electron';
 
+import { useSelector, RootStateOrAny } from 'react-redux';
 import { TodoCard } from '../../components';
 import { TaskProps } from '../../interfaces';
 
 const All: React.FC = () => {
-  const [tasks, setTasks] = useState<TaskProps[]>([]);
-
-  const getAllTasks = () => {
-    ipcRenderer.send('get-all-tasks');
-    ipcRenderer.on('get-all-tasks', (_event, response) => {
-      setTasks(response);
-    });
-  };
-
-  useEffect(() => {
-    getAllTasks();
-  }, []);
+  const { activeTasks } = useSelector((state: RootStateOrAny) => state.tasks);
 
   return (
     <motion.div
@@ -26,14 +15,20 @@ const All: React.FC = () => {
       className="page-container"
     >
       <h1>All</h1>
-      {tasks.length === 0 && (
+      {activeTasks.length === 0 && (
         <div className="not-task-container d-flex align-items-center justify-content-center">
-          <h5>You don't have any tasks to complete.</h5>
+          <h5>You don't have any activeTasks to complete.</h5>
         </div>
       )}
+      {activeTasks.length > 1 && (
+        <h5>
+          You have {activeTasks.length} active{' '}
+          {activeTasks.length === 1 ? 'task' : 'tasks'}
+        </h5>
+      )}
       <div style={{ height: 15 }} />
-      {tasks.length > 0 &&
-        tasks.map((task) => (
+      {activeTasks.length > 0 &&
+        activeTasks.map((task: TaskProps) => (
           <div key={task.key}>
             <TodoCard
               priority={task.priority}

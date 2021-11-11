@@ -18,7 +18,7 @@ import Today from './pages/Today';
 import Done from './pages/Done';
 import Search from './pages/Search';
 
-import { Header, Sidebar } from './components';
+import { Header, Sidebar, LoaderBackend } from './components';
 
 const { store, persistor } = configureStore();
 
@@ -26,6 +26,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <LoaderBackend />
         <Router>
           <Redirect exact from="/today" to="today" />
           <Header />

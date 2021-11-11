@@ -1,20 +1,66 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { FiInbox } from 'react-icons/fi';
+import { BsCalendar } from 'react-icons/bs';
+import { GoCalendar } from 'react-icons/go';
+import { AiOutlineFileDone } from 'react-icons/ai';
+import dayjs from 'dayjs';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './styles.css';
-import data from './data';
 import SearchActions from '../../store/ducks/search';
+import {
+  selectActiveTasksNumber,
+  selectDoneTasksNumber,
+} from '../../store/ducks/selectors';
 
 const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const history = useHistory();
+  const activeTasksNumber = useSelector(selectActiveTasksNumber);
+  const doneTasksNumber = useSelector(selectDoneTasksNumber);
 
   const goToSidebarItem = (link: string) => {
     dispatch(SearchActions.addPageForGoBack(link));
     history.push(link);
   };
+
+  const data = [
+    {
+      id: 1,
+      icon: <FiInbox color="#4877f4" size={15} />,
+      title: 'All',
+      route: '/all',
+      badge: activeTasksNumber,
+    },
+    {
+      id: 2,
+      icon: (
+        <div className="calendar-icon-container">
+          <BsCalendar color="#006729" size={15} />
+          <span className="calendar-date">{dayjs().format('DD')}</span>
+        </div>
+      ),
+      title: 'Today',
+      route: '/today',
+      badge: 0,
+    },
+    {
+      id: 3,
+      icon: <GoCalendar color="#710070" size={15} />,
+      title: 'Upcoming',
+      route: '/',
+      badge: 0,
+    },
+    {
+      id: 4,
+      icon: <AiOutlineFileDone color="#4e4f53" size={15} />,
+      title: 'Done',
+      route: '/done',
+      badge: doneTasksNumber,
+    },
+  ];
 
   return (
     <div className="sidebar-container">

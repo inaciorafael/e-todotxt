@@ -1,23 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ipcRenderer } from 'electron';
 
+import { useSelector, RootStateOrAny } from 'react-redux';
 import { TodoCard } from '../../components';
 import { TaskProps } from '../../interfaces';
 
 const Done: React.FC = () => {
-  const [doneTasks, setDoneTasks] = useState<TaskProps[]>([]);
-
-  const getAllDoneTasks = () => {
-    ipcRenderer.send('get-all-done');
-    ipcRenderer.on('get-all-done', (_event, response) => {
-      setDoneTasks(response);
-    });
-  };
-
-  useEffect(() => {
-    getAllDoneTasks();
-  }, []);
+  const { doneTasks } = useSelector((state: RootStateOrAny) => state.tasks);
 
   return (
     <motion.div
@@ -32,8 +21,14 @@ const Done: React.FC = () => {
         </div>
       )}
       <div style={{ height: 15 }} />
+      {doneTasks.length > 0 && (
+        <h5>
+          You have {doneTasks.length} completed{' '}
+          {doneTasks.length === 1 ? 'task' : 'tasks'}
+        </h5>
+      )}
       {doneTasks.length > 0 &&
-        doneTasks.map((task) => (
+        doneTasks.map((task: TaskProps) => (
           <div key={task.key}>
             <TodoCard
               priority={task.priority}
