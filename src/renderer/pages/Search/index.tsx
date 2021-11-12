@@ -41,7 +41,7 @@ const Search: React.FC = () => {
       </h1>
       {filterTasks.length > 0 &&
         filterTasks.map((task: TaskProps) => (
-          <div key={task.key}>
+          <div key={task.original}>
             <TodoCard
               priority={task.priority}
               done={task.done}
@@ -51,8 +51,8 @@ const Search: React.FC = () => {
               duedate={task.dueDate}
               time={task.time}
               completionDate={task.completionDate}
-              creationDate={task.creationDate}
-              id={task.key}
+              // creationDate={task.creationDate}
+              // id={task.key}
             />
           </div>
         ))}

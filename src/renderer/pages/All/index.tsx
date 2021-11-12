@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import { useSelector, RootStateOrAny } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { TodoCard } from '../../components';
 import { TaskProps } from '../../interfaces';
+import { selectActiveTasks } from '../../store/ducks/selectors';
 
 const All: React.FC = () => {
-  const { activeTasks } = useSelector((state: RootStateOrAny) => state.tasks);
+  const activeTasks = useSelector(selectActiveTasks);
 
   return (
     <motion.div
@@ -29,7 +30,7 @@ const All: React.FC = () => {
       <div style={{ height: 15 }} />
       {activeTasks.length > 0 &&
         activeTasks.map((task: TaskProps) => (
-          <div key={task.key}>
+          <div key={task.original}>
             <TodoCard
               priority={task.priority}
               done={task.done}
@@ -39,8 +40,8 @@ const All: React.FC = () => {
               duedate={task.dueDate}
               time={task.time}
               completionDate={task.completionDate}
-              creationDate={task.creationDate}
-              id={task.key}
+              // creationDate={task.creationDate}
+              // id={task.key}
             />
           </div>
         ))}

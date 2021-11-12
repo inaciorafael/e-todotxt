@@ -20,8 +20,8 @@ interface TodoCardProps {
   duedate?: Date | null;
   time: string | null;
   completionDate: Date | null;
-  creationDate: Date | null;
-  id: number;
+  // creationDate?: Date | null;
+  // id?: number;
 }
 
 dayjs.extend(calendar);
@@ -39,12 +39,14 @@ const TodoCard: React.FC<TodoCardProps> = ({
   done,
   time,
   completionDate,
-  creationDate,
-  id,
+  // creationDate,
+  // id,
 }) => {
-  console.log(completionDate, creationDate, id, time);
-
   const getPriorityStyle = (LetterOfPriority: string) => {
+    if (done) {
+      return '#49b675';
+    }
+
     switch (LetterOfPriority) {
       case 'A':
         return '#ff829b';
@@ -58,6 +60,13 @@ const TodoCard: React.FC<TodoCardProps> = ({
   };
 
   const getDueDateFormat = (date: Date) => {
+    if (done) {
+      return {
+        color: '#49b675',
+        displayDate: dayjs(completionDate).format('dddd DD MMMM YYYY'),
+      };
+    }
+
     if (dayjs(date).isToday() && dayjs(date).isAfter(dayjs())) {
       return {
         color: '#3a925e',
@@ -165,6 +174,8 @@ TodoCard.defaultProps = {
   duedate: null,
   priority: 'Z',
   done: false,
+  // creationDate: null,
+  // id: 0,
 };
 
 export default TodoCard;

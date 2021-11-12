@@ -39,8 +39,8 @@ const Done: React.FC = () => {
               duedate={task.dueDate}
               time={task.time}
               completionDate={task.completionDate}
-              creationDate={task.creationDate}
-              id={task.key}
+              // creationDate={task.creationDate}
+              // id={task.key}
             />
           </div>
         ))}

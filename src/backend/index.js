@@ -7,7 +7,6 @@ ipcMain.on('get-all-active-tasks', (event) => {
 
   try {
     tasks = todo.getTasks();
-    console.log({ tasks });
 
     chokidar.watch(todo.paths.todo_folder_path).on('all', (_event, path) => {
       const updatedTasks = todo.getTasks();
@@ -26,7 +25,6 @@ ipcMain.on('get-all-done-tasks', (event) => {
 
   try {
     tasks = todo.getDone();
-
     chokidar.watch(todo.paths.todo_folder_path).on('all', (_event, path) => {
       const updatedTasks = todo.getDone();
 
