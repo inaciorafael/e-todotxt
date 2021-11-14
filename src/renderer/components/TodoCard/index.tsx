@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsCalendar2Week } from 'react-icons/bs';
+import { AiOutlineCheck } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 import toast, { Toaster } from 'react-hot-toast';
 import dayjs from 'dayjs';
@@ -144,7 +145,7 @@ const TodoCard: React.FC<TodoCardProps> = ({
             ))}
         </div>
         <div className="d-flex align-items-center">
-          {duedate && (
+          {!done && duedate && (
             <>
               <BsCalendar2Week
                 size={15}
@@ -161,6 +162,19 @@ const TodoCard: React.FC<TodoCardProps> = ({
             </>
           )}
         </div>
+        {completionDate && (
+          <div className="d-flex flex-row align-items-center">
+            <AiOutlineCheck size={15} color="#49b675" />
+            <span
+              style={{
+                color: '#49b675',
+              }}
+              className="duedate"
+            >
+              {dayjs(completionDate).format('dddd DD MMMM YYYY')}
+            </span>
+          </div>
+        )}
         {time && <span>{dayjs(time).format('HH:mm')}</span>}
       </button>
       <Toaster />
