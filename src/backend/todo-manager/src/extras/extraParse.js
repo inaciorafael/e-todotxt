@@ -9,8 +9,10 @@ module.exports = {
 
     if (match !== null) {
       const cleanDateString = match[1].replace('due:', '');
+      const date = dayjs(cleanDateString, 'YYYY-MM-DD').toDate();
 
-      data.dueDate = dayjs(cleanDateString, 'YYYY-MM-DD').toDate();
+      data.dueDate = date;
+      data.isDefeated = dayjs(date).isBefore(dayjs());
       data.residue = data.residue.replace(match[1], '');
     } else {
       data.dueDate = null;
