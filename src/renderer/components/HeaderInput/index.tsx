@@ -7,7 +7,11 @@ import SearchActions from '../../store/ducks/search';
 
 import './styles.css';
 
-const HeaderInput: React.FC = () => {
+interface HeaderInputProps {
+  placeholder: string;
+}
+
+const HeaderInput: React.FC<HeaderInputProps> = ({ placeholder }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { word } = useSelector((state: RootStateOrAny) => state.search);
@@ -42,7 +46,7 @@ const HeaderInput: React.FC = () => {
         onChange={handleChangeSearchText}
         value={word}
         className="input"
-        placeholder="Quick Find"
+        placeholder={placeholder}
       />
     </div>
   );

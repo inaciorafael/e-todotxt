@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSelector, RootStateOrAny } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import { selectAllTasks } from '../../store/ducks/selectors';
 
 import { TodoCard } from '../../components';
 import { TaskProps } from '../../interfaces';
 
 const Search: React.FC = () => {
+  const { t } = useTranslation();
   const history = useHistory();
   const { word, page } = useSelector((state: RootStateOrAny) => state.search);
   const allTasks = useSelector(selectAllTasks);
@@ -36,8 +39,11 @@ const Search: React.FC = () => {
       className="page-container"
     >
       <h1>
-        {filterTasks.length} {filterTasks.length === 1 ? 'result' : 'results'}{' '}
-        for {`"${word}"`}
+        {filterTasks.length}{' '}
+        {filterTasks.length === 1
+          ? t('pages.search.result')
+          : t('pages.search.results')}{' '}
+        {`"${word}"`}
       </h1>
       {filterTasks.length > 0 &&
         filterTasks.map((task: TaskProps) => (

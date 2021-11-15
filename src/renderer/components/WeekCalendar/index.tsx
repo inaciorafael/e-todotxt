@@ -31,6 +31,7 @@ const WeekCalendar: React.FC<WeekCalendarProps> = ({
 
   useEffect(() => {
     getWeekDays();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

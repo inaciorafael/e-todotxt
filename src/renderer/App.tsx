@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,6 +8,7 @@ import {
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import './i18n';
 
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -18,11 +20,11 @@ import Today from './pages/Today';
 import Done from './pages/Done';
 import Search from './pages/Search';
 
-import { Header, Sidebar, LoaderBackend } from './components';
+import { Header, Sidebar, LoaderBackend, I18n } from './components';
 
 const { store, persistor } = configureStore();
 
-export default function App() {
+const App: React.FC = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -30,6 +32,7 @@ export default function App() {
         <Router>
           <Redirect exact from="/today" to="today" />
           <Header />
+          <I18n />
           <div className="d-flex flex-direction-row">
             <Sidebar />
             <Switch>
@@ -44,4 +47,6 @@ export default function App() {
       </PersistGate>
     </Provider>
   );
-}
+};
+
+export default App;

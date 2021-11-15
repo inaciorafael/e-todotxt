@@ -1,11 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 import { useSelector, RootStateOrAny } from 'react-redux';
 import { TodoCard } from '../../components';
 import { TaskProps } from '../../interfaces';
 
 const Done: React.FC = () => {
+  const { t } = useTranslation();
   const { doneTasks } = useSelector((state: RootStateOrAny) => state.tasks);
 
   return (
@@ -14,17 +16,19 @@ const Done: React.FC = () => {
       animate={{ opacity: 1, y: 0 }}
       className="page-container"
     >
-      <h1>Done</h1>
+      <h1>{t('pages.done.title')}</h1>
       {doneTasks.length === 0 && (
         <div className="not-task-container d-flex align-items-center justify-content-center">
-          <h5>You have not completed any tasks.</h5>
+          <h5>{t('pages.done.notTasks')}</h5>
         </div>
       )}
       <div style={{ height: 15 }} />
       {doneTasks.length > 0 && (
         <h5>
-          You have {doneTasks.length} completed{' '}
-          {doneTasks.length === 1 ? 'task' : 'tasks'}
+          {t('pages.done.tasksInfo', { doneTasks: doneTasks.length })}{' '}
+          {doneTasks.length === 1
+            ? t('pages.done.task')
+            : t('pages.done.tasks')}
         </h5>
       )}
       {doneTasks.length > 0 &&
@@ -44,6 +48,7 @@ const Done: React.FC = () => {
             />
           </div>
         ))}
+      <div style={{ height: 30 }} />
     </motion.div>
   );
 };

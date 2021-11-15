@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { FiInbox } from 'react-icons/fi';
 import { BsCalendar } from 'react-icons/bs';
 import { GoCalendar } from 'react-icons/go';
@@ -15,6 +16,7 @@ import {
 } from '../../store/ducks/selectors';
 
 const Sidebar: React.FC = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const history = useHistory();
@@ -30,7 +32,7 @@ const Sidebar: React.FC = () => {
     {
       id: 1,
       icon: <FiInbox color="#4877f4" size={15} />,
-      title: 'All',
+      title: t('components.sidebar.all'),
       route: '/all',
       badge: activeTasksNumber,
     },
@@ -42,21 +44,21 @@ const Sidebar: React.FC = () => {
           <span className="calendar-date">{dayjs().format('DD')}</span>
         </div>
       ),
-      title: 'Today',
+      title: t('components.sidebar.today'),
       route: '/today',
       badge: 0,
     },
     {
       id: 3,
       icon: <GoCalendar color="#710070" size={15} />,
-      title: 'Upcoming',
+      title: t('components.sidebar.upcoming'),
       route: '/',
       badge: 0,
     },
     {
       id: 4,
       icon: <AiOutlineFileDone color="#4e4f53" size={15} />,
-      title: 'Done',
+      title: t('components.sidebar.done'),
       route: '/done',
       badge: doneTasksNumber,
     },
