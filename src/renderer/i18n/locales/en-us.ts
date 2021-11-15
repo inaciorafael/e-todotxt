@@ -31,6 +31,10 @@ export default {
         result: 'result for',
         results: 'results for',
       },
+      settings: {
+        title: 'Settings',
+        languageSelect: 'Language selection',
+      },
     },
     components: {
       header: {

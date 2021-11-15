@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
+
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -17,6 +19,11 @@ const HeaderContainer = styled.div`
 
 const Header: React.FC = () => {
   const { t } = useTranslation();
+  const history = useHistory();
+
+  const goToSettings = () => {
+    history.push('/settings');
+  };
 
   return (
     <HeaderContainer className="d-flex align-items-center justify-content-between p-2">
@@ -42,6 +49,7 @@ const Header: React.FC = () => {
           <IoIosNotifications className="icon-btn" size={20} color="#FFF" />
         </motion.div>
         <motion.div
+          onClick={goToSettings}
           whileHover={{ scale: 1.2 }}
           className="d-flex align-items-center"
         >

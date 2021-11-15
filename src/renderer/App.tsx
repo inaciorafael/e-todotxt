@@ -14,13 +14,15 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import configureStore from './store';
 
+// Screens
 import Upcoming from './pages/Upcoming';
 import All from './pages/All';
 import Today from './pages/Today';
 import Done from './pages/Done';
 import Search from './pages/Search';
+import Settings from './pages/Settings';
 
-import { Header, Sidebar, LoaderBackend, I18n } from './components';
+import { Header, Sidebar, LoaderBackend } from './components';
 
 const { store, persistor } = configureStore();
 
@@ -32,7 +34,6 @@ const App: React.FC = () => {
         <Router>
           <Redirect exact from="/today" to="today" />
           <Header />
-          <I18n />
           <div className="d-flex flex-direction-row">
             <Sidebar />
             <Switch>
@@ -41,6 +42,7 @@ const App: React.FC = () => {
               <Route exact path="/today" component={Today} />
               <Route exact path="/done" component={Done} />
               <Route exact path="/search" component={Search} />
+              <Route exact path="/settings" component={Settings} />
             </Switch>
           </div>
         </Router>

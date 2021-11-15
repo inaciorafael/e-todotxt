@@ -7,10 +7,12 @@ import TodoCard from './TodoCard';
 import AddTaskButton from './AddTaskButton';
 import Modal from './ModalAddTask';
 import LoaderBackend from './LoadBackend';
-import I18n from './I18n';
+import ConfigMenu from './ConfigMenu';
+import BackButton from './BackButton';
 
 export {
-  I18n,
+  BackButton,
+  ConfigMenu,
   LoaderBackend,
   Header,
   HeaderInput,

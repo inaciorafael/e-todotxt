@@ -6,7 +6,7 @@ import translations from './locales';
 
 const i18nConfig = {
   resources: translations,
-  fallbackLng: 'pt-BR',
+  fallbackLng: 'en-US',
   defaultNS: 'translations',
 };
 
