@@ -6,8 +6,12 @@ import WeekCalendar from './WeekCalendar';
 import TodoCard from './TodoCard';
 import AddTaskButton from './AddTaskButton';
 import Modal from './ModalAddTask';
+import LoaderBackend from './LoadBackend';
+import I18n from './I18n';
 
 export {
+  I18n,
+  LoaderBackend,
   Header,
   HeaderInput,
   Space,

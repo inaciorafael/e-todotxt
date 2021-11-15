@@ -1,23 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ipcRenderer } from 'electron';
+import { useTranslation } from 'react-i18next';
 
+import { useSelector, RootStateOrAny } from 'react-redux';
 import { TodoCard } from '../../components';
 import { TaskProps } from '../../interfaces';
 
 const Done: React.FC = () => {
-  const [doneTasks, setDoneTasks] = useState<TaskProps[]>([]);
-
-  const getAllDoneTasks = () => {
-    ipcRenderer.send('get-all-done');
-    ipcRenderer.on('get-all-done', (_event, response) => {
-      setDoneTasks(response);
-    });
-  };
-
-  useEffect(() => {
-    getAllDoneTasks();
-  }, []);
+  const { t } = useTranslation();
+  const { doneTasks } = useSelector((state: RootStateOrAny) => state.tasks);
 
   return (
     <motion.div
@@ -25,15 +16,23 @@ const Done: React.FC = () => {
       animate={{ opacity: 1, y: 0 }}
       className="page-container"
     >
-      <h1>Done</h1>
+      <h1>{t('pages.done.title')}</h1>
       {doneTasks.length === 0 && (
         <div className="not-task-container d-flex align-items-center justify-content-center">
-          <h5>You have not completed any tasks.</h5>
+          <h5>{t('pages.done.notTasks')}</h5>
         </div>
       )}
       <div style={{ height: 15 }} />
+      {doneTasks.length > 0 && (
+        <h5>
+          {t('pages.done.tasksInfo', { doneTasks: doneTasks.length })}{' '}
+          {doneTasks.length === 1
+            ? t('pages.done.task')
+            : t('pages.done.tasks')}
+        </h5>
+      )}
       {doneTasks.length > 0 &&
-        doneTasks.map((task) => (
+        doneTasks.map((task: TaskProps) => (
           <div key={task.key}>
             <TodoCard
               priority={task.priority}
@@ -44,11 +43,12 @@ const Done: React.FC = () => {
               duedate={task.dueDate}
               time={task.time}
               completionDate={task.completionDate}
-              creationDate={task.creationDate}
-              id={task.key}
+              // creationDate={task.creationDate}
+              // id={task.key}
             />
           </div>
         ))}
+      <div style={{ height: 30 }} />
     </motion.div>
   );
 };

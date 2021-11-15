@@ -4,11 +4,12 @@ import { AiOutlineFlag, AiFillTag } from 'react-icons/ai';
 import { BsCalendar4Week, BsCheckLg } from 'react-icons/bs';
 import { IoMdClose } from 'react-icons/io';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 import TextareaAutosize from 'react-autosize-textarea';
-import dayjs from 'dayjs';
 
 import './styles.css';
+import dayjs from 'dayjs';
 
 interface ModalAddTaskProps {
   showModal: boolean;
@@ -24,6 +25,7 @@ const ModalAddTask: React.FC<ModalAddTaskProps> = ({
   showModal,
   setShowModal,
 }) => {
+  const { t } = useTranslation();
   const [task, setTask] = useState<string>('');
 
   const handleCloseModal = () => {
@@ -62,9 +64,11 @@ const ModalAddTask: React.FC<ModalAddTaskProps> = ({
                     outline: 0,
                     width: '100%',
                   }}
-                  placeholder={`(B) Organize comic book collection +geek @home due:${dayjs()
-                    .add(10, 'days')
-                    .format('YYYY-MM-DD')}`}
+                  placeholder={`${t(
+                    'components.modalAddTask.placeholder'
+                  )} due:${dayjs()
+                    .add(1, 'day')
+                    .format('YYYY-MM-DD')} time:12:45`}
                 />
               </div>
               <div className="footer d-flex flex-row align-items-center justify-content-between">

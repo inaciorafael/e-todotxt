@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { IoIosNotifications, IoIosSettings } from 'react-icons/io';
 import { RiTodoFill } from 'react-icons/ri';
@@ -15,10 +16,12 @@ const HeaderContainer = styled.div`
 `;
 
 const Header: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <HeaderContainer className="d-flex align-items-center justify-content-between p-2">
       <div className="d-flex flex-direction-row align-items-center">
-        <HeaderInput />
+        <HeaderInput placeholder={t('components.header.inputPlaceholder')} />
       </div>
       <div className="d-flex flex-direction-row align-items-center justify-content-between buttons-container">
         <motion.div

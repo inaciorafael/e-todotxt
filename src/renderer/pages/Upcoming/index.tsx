@@ -1,6 +1,8 @@
+/* eslint-disable no-constant-condition */
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 import relativeTime from 'dayjs/plugin/relativeTime';
 import calendar from 'dayjs/plugin/calendar';
@@ -14,6 +16,8 @@ dayjs.extend(isToday);
 dayjs.extend(updateLocale);
 
 const Upcoming: React.FC = () => {
+  const { t } = useTranslation();
+
   const [selectedDate, setSelectedDate] = useState<Date>(
     dayjs().add(1, 'day').toDate()
   );
@@ -51,7 +55,13 @@ const Upcoming: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
       >
         <div style={{ height: 15 }} />
-        <h5>You have 4 tasks to {getRelativeTime()}</h5>
+        <h5>
+          {t('pages.upcoming.tasksNumberInfo.tasksInfo', { numberOfTasks: 4 })}{' '}
+          {[1, 2, 3, 4].length === 1
+            ? t('pages.upcoming.tasksNumberInfo.oneTask')
+            : t('pages.upcoming.tasksNumberInfo.moreTasks')}{' '}
+          {getRelativeTime()}
+        </h5>
         <div style={{ height: 15 }} />
         <div style={{ height: 15 }} />
         <AddTaskButton />

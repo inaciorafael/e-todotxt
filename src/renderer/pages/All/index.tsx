@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ipcRenderer } from 'electron';
+import { useTranslation } from 'react-i18next';
 
+import { useSelector } from 'react-redux';
 import { TodoCard } from '../../components';
 import { TaskProps } from '../../interfaces';
+import { selectActiveTasks } from '../../store/ducks/selectors';
 
 const All: React.FC = () => {
-  const [tasks, setTasks] = useState<TaskProps[]>([]);
+  const { t } = useTranslation();
 
-  const getAllTasks = () => {
-    ipcRenderer.send('get-all-tasks');
-    ipcRenderer.on('get-all-tasks', (_event, response) => {
-      setTasks(response);
-    });
-  };
-
-  useEffect(() => {
-    getAllTasks();
-  }, []);
+  const activeTasks = useSelector(selectActiveTasks);
 
   return (
     <motion.div
@@ -25,16 +18,24 @@ const All: React.FC = () => {
       animate={{ opacity: 1, y: 0 }}
       className="page-container"
     >
-      <h1>All</h1>
-      {tasks.length === 0 && (
+      <h1>{t('pages.all.title')}</h1>
+      {activeTasks.length === 0 && (
         <div className="not-task-container d-flex align-items-center justify-content-center">
-          <h5>You don't have any tasks to complete.</h5>
+          <h5>{t('pages.all.dontTasks')}</h5>
         </div>
       )}
+      {activeTasks.length > 1 && (
+        <h5>
+          {t('pages.all.tasksInfo', { activeTasks: activeTasks.length })}{' '}
+          {activeTasks.length === 1
+            ? t('pages.all.task')
+            : t('pages.all.tasks')}
+        </h5>
+      )}
       <div style={{ height: 15 }} />
-      {tasks.length > 0 &&
-        tasks.map((task) => (
-          <div key={task.key}>
+      {activeTasks.length > 0 &&
+        activeTasks.map((task: TaskProps) => (
+          <div key={task.original}>
             <TodoCard
               priority={task.priority}
               done={task.done}
@@ -44,8 +45,8 @@ const All: React.FC = () => {
               duedate={task.dueDate}
               time={task.time}
               completionDate={task.completionDate}
-              creationDate={task.creationDate}
-              id={task.key}
+              // creationDate={task.creationDate}
+              // id={task.key}
             />
           </div>
         ))}

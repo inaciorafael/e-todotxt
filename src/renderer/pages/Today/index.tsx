@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
 import { AddTaskButton } from '../../components';
 
 const Today: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -16,11 +19,11 @@ const Today: React.FC = () => {
         <AddTaskButton />
       </div>
       <div style={{ height: 15 }} />
-      <h5>Overdue</h5>
+      <h5>{t('pages.today.overdue')}</h5>
       <div style={{ height: 15 }} />
-      <h5>Within today</h5>
+      <h5>{t('pages.today.withinToday')}</h5>
       <div style={{ height: 15 }} />
-      <h5>Done</h5>
+      <h5>{t('pages.today.done')}</h5>
     </motion.div>
   );
 };

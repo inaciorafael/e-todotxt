@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsCalendar2Week } from 'react-icons/bs';
+import { AiOutlineCheck } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 import toast, { Toaster } from 'react-hot-toast';
 import dayjs from 'dayjs';
@@ -20,8 +21,8 @@ interface TodoCardProps {
   duedate?: Date | null;
   time: string | null;
   completionDate: Date | null;
-  creationDate: Date | null;
-  id: number;
+  // creationDate?: Date | null;
+  // id?: number;
 }
 
 dayjs.extend(calendar);
@@ -39,12 +40,14 @@ const TodoCard: React.FC<TodoCardProps> = ({
   done,
   time,
   completionDate,
-  creationDate,
-  id,
+  // creationDate,
+  // id,
 }) => {
-  console.log(completionDate, creationDate, id, time);
-
   const getPriorityStyle = (LetterOfPriority: string) => {
+    if (done) {
+      return '#49b675';
+    }
+
     switch (LetterOfPriority) {
       case 'A':
         return '#ff829b';
@@ -58,6 +61,13 @@ const TodoCard: React.FC<TodoCardProps> = ({
   };
 
   const getDueDateFormat = (date: Date) => {
+    if (done) {
+      return {
+        color: '#49b675',
+        displayDate: dayjs(completionDate).format('dddd DD MMMM YYYY'),
+      };
+    }
+
     if (dayjs(date).isToday() && dayjs(date).isAfter(dayjs())) {
       return {
         color: '#3a925e',
@@ -135,7 +145,7 @@ const TodoCard: React.FC<TodoCardProps> = ({
             ))}
         </div>
         <div className="d-flex align-items-center">
-          {duedate && (
+          {!done && duedate && (
             <>
               <BsCalendar2Week
                 size={15}
@@ -152,6 +162,19 @@ const TodoCard: React.FC<TodoCardProps> = ({
             </>
           )}
         </div>
+        {completionDate && (
+          <div className="d-flex flex-row align-items-center">
+            <AiOutlineCheck size={15} color="#49b675" />
+            <span
+              style={{
+                color: '#49b675',
+              }}
+              className="duedate"
+            >
+              {dayjs(completionDate).format('dddd DD MMMM YYYY')}
+            </span>
+          </div>
+        )}
         {time && <span>{dayjs(time).format('HH:mm')}</span>}
       </button>
       <Toaster />
@@ -165,6 +188,8 @@ TodoCard.defaultProps = {
   duedate: null,
   priority: 'Z',
   done: false,
+  // creationDate: null,
+  // id: 0,
 };
 
 export default TodoCard;
