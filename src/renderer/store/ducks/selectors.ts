@@ -15,7 +15,25 @@ const selectAllTasks = (state: RootStateOrAny) => [
   ...state.tasks.doneTasks,
 ];
 
+const selectAllProjects = (state: RootStateOrAny) => {
+  const allTasks = selectAllTasks(state);
+  const projects = allTasks.map((task) => task.project).flat();
+  const listOfProjects = new Set([...projects]);
+
+  return listOfProjects;
+};
+
+const selectAllContexts = (state: RootStateOrAny) => {
+  const allTasks = selectAllTasks(state);
+  const contexts = allTasks.map((task) => task.context).flat();
+  const listOfContexts = new Set([...contexts]);
+
+  return listOfContexts;
+};
+
 export {
+  selectAllContexts,
+  selectAllProjects,
   selectActiveTasksNumber,
   selectDoneTasksNumber,
   selectAllTasks,

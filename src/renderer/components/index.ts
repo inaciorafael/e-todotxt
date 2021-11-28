@@ -10,8 +10,12 @@ import LoaderBackend from './LoadBackend';
 import ConfigMenu from './ConfigMenu';
 import BackButton from './BackButton';
 import ModalEditTask from './ModalEditTask';
+import SelectContext from './SelectContext';
+import SelectProject from './SelectProject';
 
 export {
+  SelectContext,
+  SelectProject,
   ModalEditTask,
   BackButton,
   ConfigMenu,

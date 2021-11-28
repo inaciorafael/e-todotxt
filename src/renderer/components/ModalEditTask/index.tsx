@@ -7,9 +7,10 @@ import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
 import TextareaAutosize from 'react-autosize-textarea';
+import dayjs from 'dayjs';
+import { SelectContext, SelectProject } from '..';
 
 import './styles.css';
-import dayjs from 'dayjs';
 
 interface ModalEditTaskProps {
   showModal: boolean;
@@ -82,6 +83,7 @@ const ModalEditTask: React.FC<ModalEditTaskProps> = ({
                   </motion.div>
                   <motion.div whileHover={{ scale: 1.1 }}>
                     <button className="action-btn" type="button">
+                      <SelectProject />
                       <AiFillTag color="#516477" size={20} />
                     </button>
                   </motion.div>
@@ -114,6 +116,7 @@ const ModalEditTask: React.FC<ModalEditTaskProps> = ({
                   </motion.div>
                 </div>
               </div>
+              <SelectContext />
             </div>
           </motion.div>
         )}
