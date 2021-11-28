@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BsCalendar2Week } from 'react-icons/bs';
 import { AiOutlineCheck } from 'react-icons/ai';
 import { motion } from 'framer-motion';
-import toast, { Toaster } from 'react-hot-toast';
+import { /* toast, */ Toaster } from 'react-hot-toast';
 import dayjs from 'dayjs';
 import calendar from 'dayjs/plugin/calendar';
 import isToday from 'dayjs/plugin/isToday';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import isBetween from 'dayjs/plugin/isBetween';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
+import ModalEditTask from '../ModalEditTask';
 
 import './styles.css';
 
 interface TodoCardProps {
+  original: string;
   title: string;
   done?: boolean;
   priority?: string;
@@ -40,9 +42,12 @@ const TodoCard: React.FC<TodoCardProps> = ({
   done,
   time,
   completionDate,
+  original,
   // creationDate,
   // id,
 }) => {
+  const [showModal, setShowModal] = useState<boolean>(false);
+
   const getPriorityStyle = (LetterOfPriority: string) => {
     if (done) {
       return '#49b675';
@@ -95,16 +100,15 @@ const TodoCard: React.FC<TodoCardProps> = ({
     };
   };
 
-  const notify = () =>
-    toast.success('Successfully created!', {
-      position: 'bottom-right',
-    });
+  const showCardDetails = () => {
+    setShowModal(true);
+  };
 
   return (
     <motion.div className={`${done ? 'done-container' : ''}`}>
       <button
         type="button"
-        onClick={notify}
+        onClick={showCardDetails}
         className="card-container"
         style={{
           borderLeftColor: getPriorityStyle(priority),
@@ -177,7 +181,12 @@ const TodoCard: React.FC<TodoCardProps> = ({
         )}
         {time && <span>{dayjs(time).format('HH:mm')}</span>}
       </button>
-      <Toaster />
+      <ModalEditTask
+        original={original}
+        showModal={showModal}
+        setShowModal={setShowModal}
+      />
+      <Toaster position="top-right" />
     </motion.div>
   );
 };

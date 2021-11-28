@@ -37,6 +37,7 @@ const All: React.FC = () => {
         activeTasks.map((task: TaskProps) => (
           <div key={task.original}>
             <TodoCard
+              original={task.original}
               priority={task.priority}
               done={task.done}
               title={task.description}

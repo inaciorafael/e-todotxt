@@ -49,6 +49,7 @@ const Search: React.FC = () => {
         filterTasks.map((task: TaskProps) => (
           <div key={task.original}>
             <TodoCard
+              original={task.original}
               priority={task.priority}
               done={task.done}
               title={task.description}

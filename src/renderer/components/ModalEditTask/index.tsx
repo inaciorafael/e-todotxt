@@ -11,9 +11,10 @@ import TextareaAutosize from 'react-autosize-textarea';
 import './styles.css';
 import dayjs from 'dayjs';
 
-interface ModalAddTaskProps {
+interface ModalEditTaskProps {
   showModal: boolean;
   setShowModal: (show: boolean) => void;
+  original: string;
 }
 
 const backdrop = {
@@ -21,12 +22,13 @@ const backdrop = {
   hidden: { opacity: 0, y: 15 },
 };
 
-const ModalAddTask: React.FC<ModalAddTaskProps> = ({
+const ModalEditTask: React.FC<ModalEditTaskProps> = ({
   showModal,
   setShowModal,
+  original,
 }) => {
   const { t } = useTranslation();
-  const [task, setTask] = useState<string>('');
+  const [task, setTask] = useState<string>(original);
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -121,4 +123,4 @@ const ModalAddTask: React.FC<ModalAddTaskProps> = ({
   );
 };
 
-export default ModalAddTask;
+export default ModalEditTask;

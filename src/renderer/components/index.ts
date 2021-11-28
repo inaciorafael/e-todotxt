@@ -9,8 +9,10 @@ import Modal from './ModalAddTask';
 import LoaderBackend from './LoadBackend';
 import ConfigMenu from './ConfigMenu';
 import BackButton from './BackButton';
+import ModalEditTask from './ModalEditTask';
 
 export {
+  ModalEditTask,
   BackButton,
   ConfigMenu,
   LoaderBackend,
